@@ -32,6 +32,41 @@ const closeModal=()=>{
     <div class="form-modal" v-if="modalState">
       <div class="form-container">
 
+        <div class="form-item">
+          <label for="name" class="label">Name</label>
+          <input type="textbox" name="name" id="name"/>
+          <p class="errorform">error</p>
+        </div>
+
+        <div class="form-item">
+          <label for="description" class="label">Description</label>
+          <textarea id="description" name="description" rows="3" cols="33">
+          </textarea>
+          <p class="errorform">error</p>
+        </div>
+
+        <div class="form-item">
+          <label for="img" class="label">Image</label>
+          <input type="textbox" name="img" id="img"/>
+          <p class="errorform">error</p>
+        </div>
+
+
+        <div class="form-item">
+          <select id="pet-select">
+              <option value="">Genres</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+          </select>
+          <p class="errorform">error</p>
+        </div>
+
+        <div class="form-item-in-theaters">
+          <input type="checkbox" id="scales" name="scales" checked />
+          <label for="scales">Scales</label>
+        </div>
+
+
 
 
         <div class="form-behaviors">
