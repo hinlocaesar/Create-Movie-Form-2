@@ -61,12 +61,10 @@ const closeModal=()=>{
           <p class="errorform">error</p>
         </div>
 
-        <div class="form-item-in-theaters">
-          <input type="checkbox" id="scales" name="scales" checked />
-          <label for="scales">Scales</label>
+        <div class="form-item-in-threaters">
+          <input type="checkbox" id="in-threaters" name="in-threaters" checked />
+          <label for="in-threaters" class="label">In theathers</label>
         </div>
-
-
 
 
         <div class="form-behaviors">

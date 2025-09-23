@@ -136,12 +136,13 @@
     align-items: center;
 }
 
-.form-item-in-theaters{
+.form-item-in-threaters{
+    width: 100%;
+    width: 500px;
     margin: 10px;
-    display: flex;
-    flex-direction: row;
     padding: 10px;
 }
+
 
 
 .form-item{
