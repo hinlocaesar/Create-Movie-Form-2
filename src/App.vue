@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { StarIcon } from "@heroicons/vue/24/solid";
 import { items } from "./movies.json";
 const movies = ref(items);
@@ -7,20 +7,39 @@ const movies = ref(items);
 function updateRating(movieIndex, rating) {
   movies.value[movieIndex].rating = rating;
 }
+
+const modalState = ref(false)
+
+const openModal=()=>{
+    modalState.value = true
+}
+
+const closeModal=()=>{
+    modalState.value = false
+}
 </script>
 
 <template>
       <div class="navigation-bar">
           <div class="navigation-content">
-            <button class="btn-create">
+            <button class="btn" @click="openModal">
               Create Movie
             </button>
          </div>
       </div>
   <div class="app">
 
-    <div class="movie-list">
+    <div class="form-modal" v-if="modalState">
+      <div class="form-container">
+        Test test test test
 
+        <button class="btn" @click="closeModal">
+              Cancel 
+        </button>
+      </div>
+    </div>
+
+    <div class="movie-list">
       <div
         class="movie-item"
         v-for="(movie, movieIndex) in movies"

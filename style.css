@@ -106,9 +106,31 @@
     width: 900px;
 }
 
-.btn-create{
+.btn{
     background-color:darkblue;
     border-radius: 10px;
     padding: 5px;
     outline-color: white;
+}
+
+.form-modal{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+}
+
+.form-container{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    position: absolute;
+    inset: 0;
+    z-index: 21;
+    background-color: #6663F1;
+    width: 500px;
+    height: 500px;
+
+    justify-content: center;
+    align-items: center;
 }
