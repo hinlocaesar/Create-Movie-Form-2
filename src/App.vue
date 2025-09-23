@@ -17,6 +17,46 @@ const openModal=()=>{
 const closeModal=()=>{
     modalState.value = false
 }
+
+
+const validations = reactive({
+  name: "required",
+  genres: "required",
+});
+
+const genres = reactive([
+  { text: "Drama", value: "Drama" },
+  { text: "Crime", value: "Crime" },
+  { text: "Action", value: "Action" },
+  { text: "Comedy", value: "Comedy" },
+]);
+
+const validationRules = (rule) => {
+  if (rule === "required") return /^ *$/;
+
+  return null;
+};
+
+function validate() {
+  let valid = true;
+  clearErrors();
+  for (const [field, rule] of Object.entries(validations)) {
+    const validation = validationRules(rule);
+
+    if (validation) {
+      if (validation.test(form[field] || "")) {
+        errors[field] = `${field} is ${rule}`;
+        valid = false;
+      }
+    }
+  }
+
+  return valid;
+}
+
+function addMovie(){
+  console.log("Hinlo Add Movie is called");
+}
 </script>
 
 <template>
@@ -31,6 +71,7 @@ const closeModal=()=>{
 
     <div class="form-modal" v-if="modalState">
       <div class="form-container">
+        <form @submit.prevent="addMovie">
 
         <div class="form-item">
           <label for="name" class="label">Name</label>
@@ -64,6 +105,7 @@ const closeModal=()=>{
         <div class="form-item-in-threaters">
           <input type="checkbox" id="in-threaters" name="in-threaters" checked />
           <label for="in-threaters" class="label">In theathers</label>
+          <p class="errorform">error</p>
         </div>
 
 
@@ -71,11 +113,11 @@ const closeModal=()=>{
           <button class="btn" @click="closeModal">
               Cancel 
           </button>
-          <button class="btn" @click="closeModal">
+          <button class="btn" type="submit">
               Submit 
           </button>
         </div>
-
+      </form>
       </div>
     </div>
 
