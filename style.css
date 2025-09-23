@@ -5,6 +5,7 @@
 
 .app {
     @apply max-w-full flex items-center justify-center h-screen mx-auto;
+    margin-top: 50px
 }
 
 .movie-list {
@@ -88,4 +89,26 @@
 
 .movie-item-star-icon {
     @apply h-5 w-5;
+}
+
+
+.navigation-bar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: white;
+}
+
+.navigation-content{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 900px;
+}
+
+.btn-create{
+    background-color:darkblue;
+    border-radius: 10px;
+    padding: 5px;
+    outline-color: white;
 }

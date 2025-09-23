@@ -10,8 +10,17 @@ function updateRating(movieIndex, rating) {
 </script>
 
 <template>
+      <div class="navigation-bar">
+          <div class="navigation-content">
+            <button class="btn-create">
+              Create Movie
+            </button>
+         </div>
+      </div>
   <div class="app">
+
     <div class="movie-list">
+
       <div
         class="movie-item"
         v-for="(movie, movieIndex) in movies"
