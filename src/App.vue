@@ -24,6 +24,14 @@ const validations = reactive({
   genres: "required",
 });
 
+const form = reactive({
+  name: null,
+  description: null,
+  image: null,
+  inTheaters: false,
+  genres: [],
+});
+
 const genres = reactive([
   { text: "Drama", value: "Drama" },
   { text: "Crime", value: "Crime" },
@@ -55,7 +63,15 @@ function validate() {
 }
 
 function addMovie(){
-  console.log("Hinlo Add Movie is called");
+  const movie ={
+    name: form.name,
+    description: form.description,
+    genres: form.genres,
+    image: form.image,
+    inTheaters: form.inTheaters
+  }
+
+  movies.value.push(movie)
 }
 </script>
 
@@ -75,35 +91,40 @@ function addMovie(){
 
         <div class="form-item">
           <label for="name" class="label">Name</label>
-          <input type="textbox" name="name" id="name"/>
+          <input type="textbox" name="name" id="name" v-model="form.name"/>
           <p class="errorform">error</p>
         </div>
 
         <div class="form-item">
           <label for="description" class="label">Description</label>
-          <textarea id="description" name="description" rows="3" cols="33">
+          <textarea id="description" name="description" rows="3" cols="33" v-model="form.description">
           </textarea>
           <p class="errorform">error</p>
         </div>
 
         <div class="form-item">
           <label for="img" class="label">Image</label>
-          <input type="textbox" name="img" id="img"/>
+          <input type="textbox" name="img" id="img" v-model="form.image"/>
           <p class="errorform">error</p>
         </div>
 
 
         <div class="form-item">
-          <select id="pet-select">
-              <option value="">Genres</option>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
+          <select id="pet-select" v-model="form.genres"
+          multiple>
+            <option
+                v-for="option in genres"
+                :key="option.value"
+                :value="option.value"
+              >
+                {{ option.text }}
+              </option>
           </select>
           <p class="errorform">error</p>
         </div>
 
         <div class="form-item-in-threaters">
-          <input type="checkbox" id="in-threaters" name="in-threaters" checked />
+          <input type="checkbox" id="in-threaters" name="in-threaters" checked v-model="form.inTheaters"/>
           <label for="in-threaters" class="label">In theathers</label>
           <p class="errorform">error</p>
         </div>
