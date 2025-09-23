@@ -16,6 +16,8 @@ const openModal=()=>{
 
 const closeModal=()=>{
     modalState.value = false
+
+    cleanUpForm()
 }
 
 
