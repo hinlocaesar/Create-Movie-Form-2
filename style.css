@@ -107,8 +107,8 @@
 }
 
 .btn{
-    background-color:darkblue;
-    border-radius: 10px;
+    background-color:#38ccf7;
+    border-radius: 5px;
     padding: 5px;
     outline-color: white;
 }
@@ -127,10 +127,17 @@
     position: absolute;
     inset: 0;
     z-index: 21;
-    background-color: #6663F1;
+    background-color: #111827;
     width: 500px;
     height: 500px;
 
     justify-content: center;
     align-items: center;
+}
+
+.form-behaviors{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
 }

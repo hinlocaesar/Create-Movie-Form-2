@@ -31,11 +31,18 @@ const closeModal=()=>{
 
     <div class="form-modal" v-if="modalState">
       <div class="form-container">
-        Test test test test
 
-        <button class="btn" @click="closeModal">
+
+
+        <div class="form-behaviors">
+          <button class="btn" @click="closeModal">
               Cancel 
-        </button>
+          </button>
+          <button class="btn" @click="closeModal">
+              Submit 
+          </button>
+        </div>
+
       </div>
     </div>
 
