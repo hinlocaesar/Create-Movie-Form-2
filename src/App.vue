@@ -32,12 +32,21 @@ const form = reactive({
   genres: [],
 });
 
+const errors = reactive({
+  name: null,
+  description: null,
+  image: null,
+  inTheaters: null,
+  genres: null,
+});
+
 const genres = reactive([
   { text: "Drama", value: "Drama" },
   { text: "Crime", value: "Crime" },
   { text: "Action", value: "Action" },
   { text: "Comedy", value: "Comedy" },
 ]);
+
 
 const validationRules = (rule) => {
   if (rule === "required") return /^ *$/;
@@ -63,6 +72,8 @@ function validate() {
 }
 
 function addMovie(){
+
+  if(validate()){
   const movie ={
     name: form.name,
     description: form.description,
@@ -70,8 +81,27 @@ function addMovie(){
     image: form.image,
     inTheaters: form.inTheaters
   }
-
   movies.value.push(movie)
+  closeModal()
+}
+}
+
+
+function cleanUpForm() {
+  form.name = null;
+  form.description = null;
+  form.image = null;
+  form.genres = [];
+  form.inTheaters = false;
+  clearErrors();
+}
+
+function clearErrors() {
+  errors.name = null;
+  errors.description = null;
+  errors.image = null;
+  errors.genres = null;
+  errors.inTheaters = null;
 }
 </script>
 
@@ -92,20 +122,20 @@ function addMovie(){
         <div class="form-item">
           <label for="name" class="label">Name</label>
           <input type="textbox" name="name" id="name" v-model="form.name"/>
-          <p class="errorform">error</p>
+          <p class="errorform">{{errors.name}}</p>
         </div>
 
         <div class="form-item">
           <label for="description" class="label">Description</label>
           <textarea id="description" name="description" rows="3" cols="33" v-model="form.description">
           </textarea>
-          <p class="errorform">error</p>
+          <p class="errorform">{{errors.description}}</p>
         </div>
 
         <div class="form-item">
           <label for="img" class="label">Image</label>
           <input type="textbox" name="img" id="img" v-model="form.image"/>
-          <p class="errorform">error</p>
+          <p class="errorform">{{errors.image}}</p>
         </div>
 
 
@@ -120,13 +150,13 @@ function addMovie(){
                 {{ option.text }}
               </option>
           </select>
-          <p class="errorform">error</p>
+          <p class="errorform">{{errors.genres}}</p>
         </div>
 
         <div class="form-item-in-threaters">
           <input type="checkbox" id="in-threaters" name="in-threaters" checked v-model="form.inTheaters"/>
           <label for="in-threaters" class="label">In theathers</label>
-          <p class="errorform">error</p>
+          <p class="errorform">{{errors.inTheaters}}</p>
         </div>
 
 
