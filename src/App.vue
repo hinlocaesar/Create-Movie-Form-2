@@ -105,6 +105,13 @@ function clearErrors() {
   errors.genres = null;
   errors.inTheaters = null;
 }
+
+
+function deleteMovie(movieIndex){
+ movies.value = movies.value.filter((word,index) => index!=movieIndex);
+
+}
+
 </script>
 
 <template>
@@ -234,6 +241,10 @@ function clearErrors() {
               >
                 <StarIcon class="movie-item-star-icon" />
               </button>
+              <div>
+                <button>Update</button>
+                <button v-on:click="deleteMovie(movieIndex)">Delete</button>
+              </div>
             </div>
           </div>
         </div>

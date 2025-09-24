@@ -163,8 +163,9 @@
 }
 
 .form-behaviors{
-    width: 100%;
+
     display: flex;
     justify-content: space-between;
-    margin: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
