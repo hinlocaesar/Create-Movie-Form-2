@@ -27,6 +27,7 @@ const validations = reactive({
 });
 
 const form = reactive({
+  id: null,
   name: null,
   description: null,
   image: null,
@@ -73,20 +74,7 @@ function validate() {
   return valid;
 }
 
-function addMovie(){
 
-  if(validate()){
-  const movie ={
-    name: form.name,
-    description: form.description,
-    genres: form.genres,
-    image: form.image,
-    inTheaters: form.inTheaters
-  }
-  movies.value.push(movie)
-  closeModal()
-}
-}
 
 
 function cleanUpForm() {
@@ -109,8 +97,72 @@ function clearErrors() {
 
 function deleteMovie(movieIndex){
  movies.value = movies.value.filter((word,index) => index!=movieIndex);
+}
+
+function addMovie(){
+    if(validate()){
+    const movie ={
+      name: form.name,
+      description: form.description,
+      genres: form.genres,
+      image: form.image,
+      inTheaters: form.inTheaters
+    }
+    movies.value.push(movie)
+    closeModal()
+  }
+}
+
+
+function openUpdateMovieForm(movieIndex){
+  const movie = movies.value[movieIndex]
+  console.log(movie)
+  form.id  = movie.id
+  form.name = movie.name
+  form.description = movie.description
+  form.image = movie.image
+  form.genres = movie.genres;
+
+  openModal()
+}
+
+function updateMovie(){
+    if(validate()){
+    const movie ={
+      id: form.id,
+      name: form.name,
+      description: form.description,
+      genres: form.genres,
+      image: form.image,
+      inTheaters: form.inTheaters
+    }
+
+    movies.value = movies.value.map((m) => {
+      if(m.id == movie.id){
+        return movie
+      }
+      return m
+    })
+
+    console.log("Hinlo movie",movie)
+    console.log("Hinlo",movies.value)
+   
+    closeModal()
+  }
+}
+
+
+
+function saveMovie(){
+  if(form.id){
+    updateMovie()
+  }else{
+    addMovie()
+  }
 
 }
+
+
 
 </script>
 
@@ -126,7 +178,7 @@ function deleteMovie(movieIndex){
 
     <div class="form-modal" v-if="modalState">
       <div class="form-container">
-        <form @submit.prevent="addMovie">
+        <form @submit.prevent="saveMovie">
 
         <div class="form-item">
           <label for="name" class="label">Name</label>
@@ -242,7 +294,7 @@ function deleteMovie(movieIndex){
                 <StarIcon class="movie-item-star-icon" />
               </button>
               <div>
-                <button>Update</button>
+                <button v-on:click="openUpdateMovieForm(movieIndex)">Update</button>
                 <button v-on:click="deleteMovie(movieIndex)">Delete</button>
               </div>
             </div>
